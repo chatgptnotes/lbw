@@ -1,7 +1,6 @@
 import { useBrainWellness } from '../hooks/useBrainWellness'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
-import { Progress } from '../components/ui/Progress'
 import { getPersonalizedDailyContent } from '../data/content'
 
 export default function DashboardPage() {
