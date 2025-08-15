@@ -120,14 +120,32 @@ export default function AboutPage() {
                   {/* Founder Image and Basic Info */}
                   <div className="text-center">
                     <motion.div 
-                      className="w-48 h-48 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brain-500 to-wellness-500 flex items-center justify-center shadow-xl"
+                      className="relative w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden shadow-xl"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="w-44 h-44 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                        <span className="text-6xl text-white font-bold">
-                          {founder.name.split(' ').map(n => n[0]).join('')}
-                        </span>
+                      <img 
+                        src={founder.imageUrl}
+                        alt={founder.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to initials if image fails to load
+                          e.currentTarget.style.display = 'none';
+                          const fallback = e.currentTarget.parentElement?.querySelector('.fallback-initials') as HTMLElement;
+                          if (fallback) {
+                            fallback.style.display = 'flex';
+                          }
+                        }}
+                      />
+                      <div 
+                        className="fallback-initials w-full h-full bg-gradient-to-br from-brain-500 to-wellness-500 items-center justify-center absolute top-0 left-0"
+                        style={{ display: 'none' }}
+                      >
+                        <div className="w-44 h-44 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                          <span className="text-6xl text-white font-bold">
+                            {founder.name.split(' ').map(n => n[0]).join('')}
+                          </span>
+                        </div>
                       </div>
                     </motion.div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{founder.name}</h3>
