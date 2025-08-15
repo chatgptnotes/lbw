@@ -324,6 +324,20 @@ export default function LandingPage() {
             >
               Free assessment • Personalized insights • Science-backed recommendations
             </motion.p>
+            <motion.div
+              className="mt-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <Link
+                to="/about"
+                className="text-brain-600 hover:text-brain-700 text-sm font-medium underline"
+              >
+                Learn about our research and founder Dr. Sweta Adatia →
+              </Link>
+            </motion.div>
           </motion.div>
           </motion.div>
         </div>

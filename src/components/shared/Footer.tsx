@@ -16,9 +16,9 @@ const Footer: React.FC = () => {
                 Limitless Brain Wellness
               </h3>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Science-backed, personalized brain wellness programs designed to enhance focus, memory, mood, and stress management.
-            </p>
+                            <p className="text-gray-300 text-sm leading-relaxed">
+                  Global neuroscience organization bridging ancient wisdom with modern science. Founded by Dr. Sweta Adatia, we've mapped 1,000+ peak performer brains across 5 countries.
+                </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-brain-400 transition-colors">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -42,6 +42,7 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
             <ul className="space-y-2">
+              <li><Link to="/about" className="text-gray-300 hover:text-brain-400 transition-colors text-sm">About Our Research</Link></li>
               <li><Link to="/assessments" className="text-gray-300 hover:text-brain-400 transition-colors text-sm">Brain Assessments</Link></li>
               <li><Link to="/coaching" className="text-gray-300 hover:text-brain-400 transition-colors text-sm">Expert Coaching</Link></li>
               <li><Link to="/content" className="text-gray-300 hover:text-brain-400 transition-colors text-sm">Learning Content</Link></li>
