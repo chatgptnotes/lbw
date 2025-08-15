@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card'
+import { Card, CardContent } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { Input, Select } from '../ui/Input'
 import { Progress } from '../ui/Progress'
@@ -580,7 +580,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       case 4:
         return data.sleepHours && data.exerciseFrequency
       case 5:
-        return data.coachingPreference !== ''
+        return data.coachingPreference !== 'none'
       case 6:
         return true
       default:

@@ -1,8 +1,6 @@
-import { useNavigate } from 'react-router-dom'
 import OnboardingFlow from '../components/features/OnboardingFlow'
 
 export default function OnboardingPage() {
-  const navigate = useNavigate()
 
   const handleOnboardingComplete = (data: any) => {
     console.log('Onboarding completed with data:', data)

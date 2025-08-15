@@ -966,7 +966,8 @@ function generateRecommendations(assessmentType: string, category: string): stri
     }
   }
 
-  return baseRecommendations[assessmentType as keyof typeof baseRecommendations]?.[category] || [
+  const recommendations = baseRecommendations[assessmentType as keyof typeof baseRecommendations]
+  return (recommendations as any)?.[category] || [
     'Complete your assessment to receive personalized recommendations',
     'Work with our brain wellness coaches for personalized guidance',
     'Continue to track your progress over time'
