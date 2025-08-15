@@ -175,7 +175,7 @@ export default function LandingPage() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                Limitless Brain Lab
+                Limitless Brain Wellness
               </motion.h1>
               <motion.p 
                 variants={fadeInUp}

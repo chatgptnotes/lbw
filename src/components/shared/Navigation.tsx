@@ -32,8 +32,8 @@ export default function Navigation() {
           <Link to="/dashboard" className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-full overflow-hidden">
               <img 
-                src="/images/logo.png" 
-                alt="Limitless Brain Lab" 
+                src="/images/logo.svg" 
+                alt="Limitless Brain Wellness" 
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   // Fallback to gradient background with initials if logo fails to load
@@ -48,10 +48,10 @@ export default function Navigation() {
                 className="logo-fallback w-full h-full bg-gradient-to-r from-brain-500 to-wellness-500 rounded-full flex items-center justify-center hidden"
                 style={{ display: 'none' }}
               >
-                <span className="text-white font-bold text-xs">LBL</span>
+                <span className="text-white font-bold text-xs">LBW</span>
               </div>
             </div>
-            <span className="font-bold text-gray-900 hidden sm:block">Limitless Brain Lab</span>
+            <span className="font-bold text-gray-900 hidden sm:block">Limitless Brain Wellness</span>
           </Link>
 
           {/* Desktop Navigation */}

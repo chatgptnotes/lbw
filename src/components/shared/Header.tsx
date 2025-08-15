@@ -40,8 +40,8 @@ const Header: React.FC = () => {
                 transition={{ duration: 0.2 }}
               >
                 <img 
-                  src="/images/logo.png" 
-                  alt="Limitless Brain Lab" 
+                  src="/images/logo.svg" 
+                  alt="Limitless Brain Wellness" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     // Fallback to gradient background with initials if logo fails to load
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
                   className="logo-fallback w-full h-full bg-gradient-to-br from-brain-500 to-wellness-500 rounded-full flex items-center justify-center hidden"
                   style={{ display: 'none' }}
                 >
-                  <span className="text-white font-bold text-sm">LBL</span>
+                  <span className="text-white font-bold text-sm">LBW</span>
                 </div>
               </motion.div>
               <div>
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                   className="text-xl font-bold bg-gradient-to-r from-brain-600 to-wellness-600 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.02 }}
                 >
-                  Limitless Brain Lab
+                  Limitless Brain Wellness
                 </motion.h1>
                 <p className="text-xs text-gray-500 hidden sm:block">Dr. Sweta Adatia</p>
               </div>
