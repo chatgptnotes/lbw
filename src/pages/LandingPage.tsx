@@ -1,88 +1,333 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import InteractiveBrainHero from '../components/features/InteractiveBrainHero'
 
 export default function LandingPage() {
+  // Animation variants
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: "easeOut" }
+  }
+
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const scaleIn = {
+    initial: { opacity: 0, scale: 0.8 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brain-50 via-white to-wellness-50">
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Header */}
-          <div className="mb-12">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-brain-600 to-wellness-600 bg-clip-text text-transparent mb-6">
-              Limitless Brain Wellness
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Science-backed, personalized brain wellness programs designed to enhance focus, memory, mood, and stress management.
-            </p>
-          </div>
+    <div>
+      {/* Interactive Brain Hero Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <InteractiveBrainHero />
+      </motion.div>
+      
+      {/* Video Section */}
+      <motion.div 
+        className="bg-gray-900 py-16"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="max-w-4xl mx-auto text-center"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-3xl font-bold text-white mb-4"
+            >
+              Discover Your Brain's Potential
+            </motion.h2>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-gray-300 mb-8 max-w-2xl mx-auto"
+            >
+              Watch how our science-backed approach transforms brain wellness through personalized assessments, targeted training, and expert coaching.
+            </motion.p>
+            
+            {/* Video Player Container */}
+            <motion.div 
+              variants={scaleIn}
+              className="relative w-full max-w-3xl mx-auto bg-black rounded-xl overflow-hidden shadow-2xl"
+            >
+              <div className="aspect-video">
+                <video 
+                  className="w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  onError={(e) => {
+                    console.error('Video failed to load:', e);
+                    // Hide video and show placeholder if video fails to load
+                    const target = e.target as HTMLVideoElement;
+                    target.style.display = 'none';
+                    const placeholder = target.nextElementSibling as HTMLElement;
+                    if (placeholder) placeholder.style.display = 'flex';
+                  }}
+                  onLoadStart={() => console.log('Video loading started')}
+                  onCanPlay={() => console.log('Video can start playing')}
+                  onLoadedData={() => console.log('Video data loaded')}
+                >
+                  <source src="/videos/brain-wellness-intro.mp4" type="video/mp4" />
+                  <source src="/videos/brain-wellness-intro.webm" type="video/webm" />
+                  <p className="text-white p-8">
+                    Your browser doesn't support video playback. 
+                    <a href="/videos/brain-wellness-intro.mp4" className="text-brain-400 underline">
+                      Download the video instead
+                    </a>
+                  </p>
+                </video>
+                
+                {/* Video Placeholder (shown when video fails to load) */}
+                <div className="hidden w-full h-full bg-gradient-to-br from-brain-600 to-wellness-600 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <div className="text-6xl mb-4">🎬</div>
+                    <h3 className="text-xl font-semibold mb-2">Brain Wellness Introduction Video</h3>
+                    <p className="text-brain-100 text-sm">
+                      Video coming soon - Upload your video to /public/videos/
+                    </p>
+                    <div className="mt-6 inline-flex items-center px-6 py-3 bg-white bg-opacity-20 rounded-lg backdrop-blur-sm">
+                      <svg className="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                      </svg>
+                      <span>Play Video</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Video Description */}
+            <motion.div 
+              variants={fadeInUp}
+              className="mt-8 grid md:grid-cols-3 gap-6 text-left"
+            >
+              <div className="bg-gray-800 rounded-lg p-6">
+                <div className="text-brain-400 text-2xl mb-3">🎯</div>
+                <h3 className="text-white font-semibold mb-2">Personalized Assessment</h3>
+                <p className="text-gray-300 text-sm">
+                  Comprehensive evaluation of your cognitive strengths and areas for improvement.
+                </p>
+              </div>
+              
+              <div className="bg-gray-800 rounded-lg p-6">
+                <div className="text-wellness-400 text-2xl mb-3">🧠</div>
+                <h3 className="text-white font-semibold mb-2">Targeted Training</h3>
+                <p className="text-gray-300 text-sm">
+                  Evidence-based exercises designed specifically for your brain wellness goals.
+                </p>
+              </div>
+              
+              <div className="bg-gray-800 rounded-lg p-6">
+                <div className="text-calm-400 text-2xl mb-3">👥</div>
+                <h3 className="text-white font-semibold mb-2">Expert Coaching</h3>
+                <p className="text-gray-300 text-sm">
+                  Professional guidance from certified brain wellness and nervous system specialists.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
+      
+      {/* Main Content Section */}
+      <motion.div 
+        className="bg-gradient-to-br from-brain-50 via-white to-wellness-50 py-16"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="max-w-4xl mx-auto text-center"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {/* Header */}
+            <motion.div variants={fadeInUp} className="mb-12">
+              <motion.h1 
+                className="text-5xl font-bold bg-gradient-to-r from-brain-600 to-wellness-600 bg-clip-text text-transparent mb-6"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                Limitless Brain Wellness
+              </motion.h1>
+              <motion.p 
+                variants={fadeInUp}
+                className="text-xl text-gray-600 max-w-2xl mx-auto"
+              >
+                Science-backed, personalized brain wellness programs designed to enhance focus, memory, mood, and stress management.
+              </motion.p>
+            </motion.div>
 
           {/* Key Features */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="p-6 rounded-lg bg-white shadow-sm border border-brain-100">
-              <div className="w-12 h-12 bg-brain-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <span className="text-brain-600 text-xl">🧠</span>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">ADHD Support</h3>
-              <p className="text-gray-600">Comprehensive tools and strategies for attention enhancement and executive function improvement.</p>
-            </div>
-
-            <div className="p-6 rounded-lg bg-white shadow-sm border border-wellness-100">
-              <div className="w-12 h-12 bg-wellness-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <span className="text-wellness-600 text-xl">💡</span>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Memory Enhancement</h3>
-              <p className="text-gray-600">Evidence-based memory training and cognitive exercises to boost recall and retention.</p>
-            </div>
-
-            <div className="p-6 rounded-lg bg-white shadow-sm border border-calm-100">
-              <div className="w-12 h-12 bg-calm-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <span className="text-calm-600 text-xl">🧘‍♀️</span>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Stress & Mood</h3>
-              <p className="text-gray-600">Personalized stress management and mood regulation techniques for emotional balance.</p>
-            </div>
-          </div>
+          <motion.div 
+            variants={fadeInUp}
+            className="grid md:grid-cols-3 gap-8 mb-12"
+          >
+            {[
+              {
+                icon: "🧠",
+                bgColor: "bg-brain-100",
+                textColor: "text-brain-600",
+                borderColor: "border-brain-100",
+                title: "ADHD Support",
+                description: "Comprehensive tools and strategies for attention enhancement and executive function improvement."
+              },
+              {
+                icon: "💡",
+                bgColor: "bg-wellness-100",
+                textColor: "text-wellness-600",
+                borderColor: "border-wellness-100",
+                title: "Memory Enhancement",
+                description: "Evidence-based memory training and cognitive exercises to boost recall and retention."
+              },
+              {
+                icon: "🧘‍♀️",
+                bgColor: "bg-calm-100",
+                textColor: "text-calm-600",
+                borderColor: "border-calm-100",
+                title: "Stress & Mood",
+                description: "Personalized stress management and mood regulation techniques for emotional balance."
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                className={`p-6 rounded-lg bg-white shadow-sm border ${feature.borderColor} hover:shadow-lg transition-shadow duration-300`}
+                whileHover={{ 
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+              >
+                <motion.div 
+                  className={`w-12 h-12 ${feature.bgColor} rounded-lg flex items-center justify-center mb-4 mx-auto`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className={`${feature.textColor} text-xl`}>{feature.icon}</span>
+                </motion.div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* Brain Fitness Score Preview */}
-          <div className="bg-white rounded-xl shadow-lg p-8 mb-12">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Track Your Brain Fitness</h2>
-            <p className="text-gray-600 mb-6">
+          <motion.div 
+            variants={scaleIn}
+            className="bg-white rounded-xl shadow-lg p-8 mb-12 hover:shadow-xl transition-shadow duration-300"
+          >
+            <motion.h2 
+              className="text-2xl font-semibold text-gray-900 mb-4"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              Track Your Brain Fitness
+            </motion.h2>
+            <motion.p 
+              className="text-gray-600 mb-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
               Get a personalized Brain Fitness Score based on comprehensive assessments and daily tracking.
-            </p>
+            </motion.p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-brain-600">85</div>
-                <div className="text-sm text-gray-500">Focus</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-wellness-600">78</div>
-                <div className="text-sm text-gray-500">Memory</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-calm-600">92</div>
-                <div className="text-sm text-gray-500">Mood</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-brain-500">74</div>
-                <div className="text-sm text-gray-500">Stress</div>
-              </div>
+              {[
+                { score: 85, label: "Focus", color: "text-brain-600" },
+                { score: 78, label: "Memory", color: "text-wellness-600" },
+                { score: 92, label: "Mood", color: "text-calm-600" },
+                { score: 74, label: "Stress", color: "text-brain-500" }
+              ].map((metric, index) => (
+                <motion.div
+                  key={metric.label}
+                  className="text-center"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <motion.div 
+                    className={`text-2xl font-bold ${metric.color}`}
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                  >
+                    {metric.score}
+                  </motion.div>
+                  <div className="text-sm text-gray-500">{metric.label}</div>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Call to Action */}
-          <div className="text-center">
-            <Link
-              to="/onboarding"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-brain-600 to-wellness-600 text-white font-semibold rounded-lg hover:from-brain-700 hover:to-wellness-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+          <motion.div 
+            variants={fadeInUp}
+            className="text-center"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Start Your Brain Wellness Journey
-              <span className="ml-2">→</span>
-            </Link>
-            <p className="text-sm text-gray-500 mt-4">
+              <Link
+                to="/onboarding"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-brain-600 to-wellness-600 text-white font-semibold rounded-lg hover:from-brain-700 hover:to-wellness-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Start Your Brain Wellness Journey
+                <motion.span 
+                  className="ml-2"
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  →
+                </motion.span>
+              </Link>
+            </motion.div>
+            <motion.p 
+              className="text-sm text-gray-500 mt-4"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
               Free assessment • Personalized insights • Science-backed recommendations
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

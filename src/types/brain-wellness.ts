@@ -1,18 +1,24 @@
 // LBW Brain Wellness Types
 
-export type ImprovementFocus = 'adhd' | 'memory' | 'stress' | 'mood' | 'all'
+export type ImprovementFocus = 'adhd' | 'memory' | 'stress' | 'wellness'
 
 export interface User {
   id: string
   name: string
-  age: number
-  gender: 'male' | 'female' | 'other'
+  age?: number
+  gender?: 'male' | 'female' | 'other'
   email: string
-  improvementFocus: ImprovementFocus[]
-  onboardingCompleted: boolean
+  improvementFocus: ImprovementFocus
+  healthConditions?: string[]
+  currentMedications?: string[]
+  sleepHours?: number
+  exerciseFrequency?: 'never' | 'rarely' | 'light' | 'moderate' | 'intense'
+  stressLevel?: number
+  coachingPreference?: 'none' | 'brain' | 'nervous_system' | 'both'
+  onboardingCompleted?: boolean
   brainFitnessScore?: number
   createdAt: string
-  updatedAt: string
+  updatedAt?: string
 }
 
 export interface BrainFitnessScore {
@@ -36,6 +42,7 @@ export interface Assessment {
   questions: AssessmentQuestion[]
   estimatedTime: number // in minutes
   scoring: ScoringConfig
+  score?: number
 }
 
 export interface AssessmentQuestion {

@@ -1,49 +1,132 @@
-import { InputHTMLAttributes, forwardRef } from 'react'
+import { InputHTMLAttributes, forwardRef, useState } from 'react'
 import { clsx } from 'clsx'
+import { motion } from 'framer-motion'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
   error?: string
   helperText?: string
   variant?: 'default' | 'wellness'
+  animate?: boolean
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, helperText, variant = 'default', ...props }, ref) => {
-    const baseClasses = 'block w-full px-4 py-2 text-sm border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
+  ({ className, label, error, helperText, variant = 'default', animate = true, ...props }, ref) => {
+    const [isFocused, setIsFocused] = useState(false)
+    
+    const baseClasses = 'block w-full px-4 py-3 text-sm border rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-white/80 backdrop-blur-sm'
     
     const variants = {
-      default: 'border-gray-300 focus:border-brain-500 focus:ring-brain-500',
-      wellness: 'border-wellness-300 focus:border-wellness-500 focus:ring-wellness-500'
+      default: 'border-gray-200 focus:border-brain-500 focus:ring-brain-500/20 hover:border-gray-300',
+      wellness: 'border-wellness-200 focus:border-wellness-500 focus:ring-wellness-500/20 hover:border-wellness-300'
     }
     
     const errorClasses = error 
-      ? 'border-red-300 focus:border-red-500 focus:ring-red-500' 
+      ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
       : variants[variant]
 
+    const containerVariants = animate ? {
+      initial: { opacity: 0, y: 10 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.3 }
+    } : {}
+
+    const Container = animate ? motion.div : 'div'
+
     return (
-      <div className="w-full">
+      <Container 
+        className="w-full"
+        {...containerVariants}
+      >
         {label && (
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <motion.label 
+            className={clsx(
+              "block text-sm font-medium mb-2 transition-colors duration-200",
+              error ? "text-red-700" : 
+              isFocused ? (variant === 'wellness' ? "text-wellness-700" : "text-brain-700") : 
+              "text-gray-700"
+            )}
+            animate={animate ? { 
+              scale: isFocused ? 1.02 : 1,
+              color: isFocused ? (variant === 'wellness' ? '#047857' : '#0369a1') : '#374151'
+            } : {}}
+            transition={{ duration: 0.2 }}
+          >
             {label}
-          </label>
+          </motion.label>
         )}
-        <input
-          ref={ref}
-          className={clsx(
-            baseClasses,
-            errorClasses,
-            className
+        <motion.div
+          className="relative"
+          whileFocus={{ scale: 1.01 }}
+          transition={{ duration: 0.2 }}
+        >
+          <input
+            ref={ref}
+            className={clsx(
+              baseClasses,
+              errorClasses,
+              'placeholder:text-gray-400',
+              className
+            )}
+            onFocus={(e) => {
+              setIsFocused(true)
+              props.onFocus?.(e)
+            }}
+            onBlur={(e) => {
+              setIsFocused(false)
+              props.onBlur?.(e)
+            }}
+            {...props}
+          />
+          {/* Focus ring enhancement */}
+          {animate && isFocused && (
+            <motion.div
+              className={clsx(
+                "absolute inset-0 rounded-xl -z-10",
+                variant === 'wellness' ? "bg-wellness-100/30" : "bg-brain-100/30"
+              )}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+            />
           )}
-          {...props}
-        />
-        {error && (
-          <p className="mt-1 text-sm text-red-600">{error}</p>
+        </motion.div>
+        {animate ? (
+          <>
+            {error && (
+              <motion.p 
+                className="mt-2 text-sm text-red-600 flex items-center"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <span className="text-red-500 mr-1">⚠</span>
+                {error}
+              </motion.p>
+            )}
+            {helperText && !error && (
+              <motion.p 
+                className="mt-2 text-sm text-gray-500"
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: 0.1 }}
+              >
+                {helperText}
+              </motion.p>
+            )}
+          </>
+        ) : (
+          <>
+            {error && (
+              <p className="mt-2 text-sm text-red-600">{error}</p>
+            )}
+            {helperText && !error && (
+              <p className="mt-2 text-sm text-gray-500">{helperText}</p>
+            )}
+          </>
         )}
-        {helperText && !error && (
-          <p className="mt-1 text-sm text-gray-500">{helperText}</p>
-        )}
-      </div>
+      </Container>
     )
   }
 )

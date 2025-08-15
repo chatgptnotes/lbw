@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import type { BrainWellnessContextType, User, BrainFitnessScore, DailyContent, DailyProgress, Achievement, AssessmentResult } from '../types/brain-wellness'
-import { supabase, getCurrentUser } from '../lib/supabase'
+import { supabase } from '../lib/supabase'
 
 const BrainWellnessContext = createContext<BrainWellnessContextType | undefined>(undefined)
 
@@ -17,40 +17,68 @@ export function BrainWellnessProvider({ children }: BrainWellnessProviderProps) 
   const [achievements, setAchievements] = useState<Achievement[]>([])
 
   useEffect(() => {
-    initializeUser()
+    // Initialize with mock data for development
+    setUser({
+      id: '1',
+      name: 'Alex Johnson',
+      age: 28,
+      gender: 'other',
+      email: 'alex@example.com',
+      improvementFocus: 'adhd',
+      onboardingCompleted: true,
+      brainFitnessScore: 78,
+      createdAt: '2024-01-15',
+      updatedAt: '2024-12-26'
+    })
+    
+    setBrainFitnessScore({
+      overall: 78,
+      breakdown: {
+        focus: 85,
+        memory: 78,
+        mood: 92,
+        stress: 74
+      },
+      trend: 'up',
+      lastUpdated: '2024-12-26',
+      improvements: ['Focus training', 'Stress management']
+    })
+    
+    setLoading(false)
+    // initializeUser()
   }, [])
 
-  const initializeUser = async () => {
-    try {
-      const { user: authUser } = await getCurrentUser()
-      if (authUser) {
-        const { data: userData } = await supabase
-          .from('users')
-          .select('*')
-          .eq('id', authUser.id)
-          .single()
+  // const initializeUser = async () => {
+  //   try {
+  //     const { user: authUser } = await getCurrentUser()
+  //     if (authUser) {
+  //       const { data: userData } = await supabase
+  //         .from('users')
+  //         .select('*')
+  //         .eq('id', authUser.id)
+  //         .single()
         
-        if (userData) {
-          setUser({
-            id: userData.id,
-            name: userData.name,
-            age: userData.age,
-            gender: userData.gender,
-            email: userData.email,
-            improvementFocus: userData.improvement_focus,
-            onboardingCompleted: userData.onboarding_completed,
-            brainFitnessScore: userData.brain_fitness_score,
-            createdAt: userData.created_at,
-            updatedAt: userData.updated_at
-          })
-        }
-      }
-    } catch (error) {
-      console.error('Error initializing user:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
+  //       if (userData) {
+  //         setUser({
+  //           id: userData.id,
+  //           name: userData.name,
+  //           age: userData.age,
+  //           gender: userData.gender,
+  //           email: userData.email,
+  //           improvementFocus: userData.improvement_focus,
+  //           onboardingCompleted: userData.onboarding_completed,
+  //           brainFitnessScore: userData.brain_fitness_score,
+  //           createdAt: userData.created_at,
+  //           updatedAt: userData.updated_at
+  //         })
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Error initializing user:', error)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
   const updateUser = async (updates: Partial<User>) => {
     if (!user) return

@@ -1,20 +1,22 @@
 import { HTMLAttributes, forwardRef } from 'react'
 import { clsx } from 'clsx'
+import { motion } from 'framer-motion'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'interactive' | 'gradient' | 'wellness'
   padding?: 'none' | 'sm' | 'md' | 'lg'
+  animate?: boolean
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant = 'default', padding = 'md', children, ...props }, ref) => {
-    const baseClasses = 'rounded-xl shadow-lg transition-all duration-200'
+  ({ className, variant = 'default', padding = 'md', animate = true, children, ...props }, ref) => {
+    const baseClasses = 'rounded-xl shadow-lg transition-all duration-200 backdrop-blur-sm'
     
     const variants = {
-      default: 'bg-white border border-gray-100',
-      interactive: 'bg-white border border-gray-100 hover:shadow-xl hover:-translate-y-1 cursor-pointer',
-      gradient: 'bg-gradient-to-br from-brain-50 to-wellness-50 border border-brain-100',
-      wellness: 'bg-gradient-to-r from-brain-500 to-wellness-500 text-white'
+      default: 'bg-white/95 border border-gray-100/50 hover:shadow-xl hover:border-gray-200/70',
+      interactive: 'bg-white/95 border border-gray-100/50 hover:shadow-2xl cursor-pointer hover:border-brain-200/50',
+      gradient: 'bg-gradient-to-br from-brain-50/90 to-wellness-50/90 border border-brain-100/50 hover:shadow-xl',
+      wellness: 'bg-gradient-to-r from-brain-500 to-wellness-500 text-white shadow-xl hover:shadow-2xl'
     }
     
     const paddings = {
@@ -22,6 +24,38 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       sm: 'p-4',
       md: 'p-6',
       lg: 'p-8'
+    }
+
+    const animationProps = animate ? {
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5 },
+      ...(variant === 'interactive' ? {
+        whileHover: { 
+          y: -8,
+          scale: 1.02,
+          transition: { duration: 0.2 }
+        },
+        whileTap: { scale: 0.98 }
+      } : {})
+    } : {}
+
+    if (animate) {
+      return (
+        <motion.div
+          ref={ref}
+          className={clsx(
+            baseClasses,
+            variants[variant],
+            paddings[padding],
+            className
+          )}
+          {...animationProps}
+        >
+          {children}
+        </motion.div>
+      )
     }
 
     return (

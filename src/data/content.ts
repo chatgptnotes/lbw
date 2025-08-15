@@ -6,7 +6,7 @@ export const sampleQuotes: QuoteContent[] = [
     id: 'quote-1',
     text: 'The mind is everything. What you think you become.',
     author: 'Buddha',
-    category: 'all',
+    category: 'wellness',
     mood: 'inspiring'
   },
   {
@@ -34,7 +34,7 @@ export const sampleQuotes: QuoteContent[] = [
     id: 'quote-5',
     text: 'You have been assigned this mountain to show others it can be moved.',
     author: 'Mel Robbins',
-    category: 'mood',
+    category: 'wellness',
     mood: 'empowering'
   }
 ]
@@ -81,7 +81,7 @@ export const sampleVideos: VideoContent[] = [
     url: 'https://example.com/mood-boost',
     thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400',
     duration: 600,
-    category: 'mood',
+    category: 'wellness',
     difficulty: 'beginner',
     tags: ['morning routine', 'mood', 'energy', 'positivity']
   }
@@ -310,7 +310,7 @@ export const sampleTasks: TaskContent[] = [
       'Identify one potential challenge and how you\'ll handle it',
       'Close with a positive affirmation'
     ],
-    category: 'mood',
+    category: 'wellness',
     difficulty: 'easy'
   },
   {
@@ -350,7 +350,7 @@ export const sampleTasks: TaskContent[] = [
 ]
 
 // Function to get personalized content based on user's improvement focus
-export function getPersonalizedDailyContent(improvementFocus: ImprovementFocus[]): {
+export function getPersonalizedDailyContent(improvementFocus: ImprovementFocus): {
   quote: QuoteContent
   video: VideoContent
   article: ArticleContent
@@ -359,7 +359,7 @@ export function getPersonalizedDailyContent(improvementFocus: ImprovementFocus[]
   task: TaskContent
 } {
   // Select content based on primary focus or general if 'all' is selected
-  const primaryFocus = improvementFocus.includes('all') ? 'all' : improvementFocus[0] || 'all'
+  const primaryFocus = improvementFocus === 'wellness' ? 'wellness' : improvementFocus
   
   const quote = sampleQuotes.find(q => q.category === primaryFocus) || sampleQuotes[0]
   const video = sampleVideos.find(v => v.category === primaryFocus) || sampleVideos[0]

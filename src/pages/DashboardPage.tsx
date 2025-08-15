@@ -2,9 +2,12 @@ import { useBrainWellness } from '../hooks/useBrainWellness'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
 import { getPersonalizedDailyContent } from '../data/content'
+import BrainFitnessScore from '../components/features/BrainFitnessScore'
+import { SkeletonDashboard } from '../components/ui/Skeleton'
+import { motion } from 'framer-motion'
 
 export default function DashboardPage() {
-  const { user, brainFitnessScore, loading } = useBrainWellness()
+  const { user, loading } = useBrainWellness()
   
   // Get personalized content based on user's improvement focus
   const dailyContent = user?.improvementFocus 
@@ -13,90 +16,65 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-brain-50 via-white to-wellness-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brain-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading your dashboard...</p>
+      <div className="min-h-screen bg-gradient-to-br from-brain-50 via-white to-wellness-50">
+        <div className="container mx-auto px-4 py-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <SkeletonDashboard />
+          </motion.div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brain-50 via-white to-wellness-50">
+    <motion.div 
+      className="min-h-screen bg-gradient-to-br from-brain-50 via-white to-wellness-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="mb-8">
+        <motion.div 
+          className="mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <h1 className="text-3xl font-bold text-gray-900">
             Welcome back, {user?.name || 'User'}! 👋
           </h1>
           <p className="text-gray-600 mt-2">Here's your brain wellness overview for today.</p>
-        </div>
+        </motion.div>
 
         {/* Brain Fitness Score */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+        <motion.div 
+          className="grid lg:grid-cols-3 gap-6 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Brain Fitness Score</h2>
-              {brainFitnessScore ? (
-                <div className="space-y-4">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-brain-600 mb-2">
-                      {brainFitnessScore.overall}
-                    </div>
-                    <p className="text-gray-600">Overall Score</p>
-                    <div className="flex items-center justify-center mt-2">
-                      <span className={`text-sm font-medium ${
-                        brainFitnessScore.trend === 'up' ? 'text-green-600' : 
-                        brainFitnessScore.trend === 'down' ? 'text-red-600' : 'text-gray-600'
-                      }`}>
-                        {brainFitnessScore.trend === 'up' ? '↗️ Improving' : 
-                         brainFitnessScore.trend === 'down' ? '↘️ Declining' : '→ Stable'}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-4 gap-4">
-                    <div className="text-center">
-                      <div className="text-2xl font-semibold text-brain-600">
-                        {brainFitnessScore.breakdown.focus}
-                      </div>
-                      <div className="text-sm text-gray-500">Focus</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-semibold text-wellness-600">
-                        {brainFitnessScore.breakdown.memory}
-                      </div>
-                      <div className="text-sm text-gray-500">Memory</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-semibold text-calm-600">
-                        {brainFitnessScore.breakdown.mood}
-                      </div>
-                      <div className="text-sm text-gray-500">Mood</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-semibold text-brain-500">
-                        {brainFitnessScore.breakdown.stress}
-                      </div>
-                      <div className="text-sm text-gray-500">Stress</div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <p className="text-gray-600 mb-4">Complete an assessment to see your Brain Fitness Score</p>
-                  <button className="px-6 py-2 bg-brain-600 text-white rounded-lg hover:bg-brain-700 transition-colors">
-                    Take Assessment
-                  </button>
-                </div>
-              )}
-            </div>
+            <BrainFitnessScore 
+              onRecommendationClick={(recommendation) => {
+                // Handle recommendation clicks - could navigate to specific content or assessments
+                console.log('Recommendation clicked:', recommendation)
+              }}
+            />
           </div>
 
           {/* Quick Actions */}
-          <div className="space-y-4">
-            <div className="bg-white rounded-xl shadow-lg p-6">
+          <motion.div 
+            className="space-y-4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
               <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <button className="w-full p-3 text-left border border-gray-200 rounded-lg hover:border-brain-300 hover:bg-brain-50 transition-colors">
@@ -130,11 +108,16 @@ export default function DashboardPage() {
                 </button>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Today's Personalized Content */}
-        <div className="space-y-6 mb-8">
+        <motion.div 
+          className="space-y-6 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           {/* Today's Inspiration */}
           {dailyContent?.quote && (
             <Card>
@@ -231,7 +214,12 @@ export default function DashboardPage() {
           </div>
 
           {/* Additional Content Row */}
-          <div className="grid lg:grid-cols-2 gap-6">
+          <motion.div 
+            className="grid lg:grid-cols-2 gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             {/* Breathwork */}
             {dailyContent?.breathwork && (
               <Card>
@@ -274,11 +262,16 @@ export default function DashboardPage() {
                 </CardContent>
               </Card>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Progress Overview */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <motion.div 
+          className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
           <h3 className="font-semibold text-gray-900 mb-4">Your Progress This Week</h3>
           <div className="grid grid-cols-7 gap-2 mb-4">
             {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, index) => (
@@ -293,8 +286,8 @@ export default function DashboardPage() {
           <p className="text-sm text-gray-600">
             You've been active for 4 out of 7 days this week. Keep it up! 🎉
           </p>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }

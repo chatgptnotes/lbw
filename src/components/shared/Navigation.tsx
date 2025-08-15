@@ -13,7 +13,9 @@ export default function Navigation() {
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: '🏠' },
     { path: '/assessment', label: 'Assessments', icon: '📝' },
+    { path: '/content', label: 'Content', icon: '📚' },
     { path: '/coaching', label: 'Coaching', icon: '🧠' },
+    { path: '/qeeg', label: 'qEEG', icon: '⚡' },
     { path: '/progress', label: 'Progress', icon: '📊' },
   ]
 
@@ -54,9 +56,11 @@ export default function Navigation() {
 
           {/* User Menu */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              Profile
-            </Button>
+            <Link to="/profile">
+              <Button variant="outline" size="sm">
+                Profile
+              </Button>
+            </Link>
             <Button variant="ghost" size="sm">
               Sign Out
             </Button>
@@ -97,9 +101,11 @@ export default function Navigation() {
                 </Link>
               ))}
               <div className="pt-4 border-t border-gray-200 space-y-2">
-                <Button variant="outline" size="sm" className="w-full">
-                  Profile
-                </Button>
+                <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="outline" size="sm" className="w-full">
+                    Profile
+                  </Button>
+                </Link>
                 <Button variant="ghost" size="sm" className="w-full">
                   Sign Out
                 </Button>

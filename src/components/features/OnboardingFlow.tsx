@@ -120,7 +120,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
         age: parseInt(data.age),
         gender: data.gender as 'male' | 'female' | 'other',
         email: data.email,
-        improvementFocus: data.improvementFocus,
+        improvementFocus: data.improvementFocus[0] || 'wellness',
         onboardingCompleted: true
       })
       
