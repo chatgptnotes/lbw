@@ -168,7 +168,11 @@ export default function DashboardPage() {
                   <p className="text-gray-600 text-sm mb-4">{dailyContent.video.description}</p>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs text-gray-500">{Math.floor(dailyContent.video.duration / 60)} min</span>
-                    <span className={`text-xs px-2 py-1 rounded-full bg-${dailyContent.video.category === 'adhd' ? 'brain' : dailyContent.video.category === 'memory' ? 'wellness' : 'calm'}-100 text-${dailyContent.video.category === 'adhd' ? 'brain' : dailyContent.video.category === 'memory' ? 'wellness' : 'calm'}-700`}>
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      dailyContent.video.category === 'adhd' ? 'bg-brain-100 text-brain-700' :
+                      dailyContent.video.category === 'memory' ? 'bg-wellness-100 text-wellness-700' :
+                      'bg-calm-100 text-calm-700'
+                    }`}>
                       {dailyContent.video.difficulty}
                     </span>
                   </div>

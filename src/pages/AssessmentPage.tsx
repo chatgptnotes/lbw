@@ -67,11 +67,24 @@ export default function AssessmentPage() {
               const icon = assessmentIcons[iconKey] || '📋'
               const color = assessmentColors[colorKey] || 'brain'
               
+              // Define static class mappings
+              const bgClasses = {
+                brain: 'bg-brain-100',
+                wellness: 'bg-wellness-100',
+                calm: 'bg-calm-100'
+              }
+              
+              const textClasses = {
+                brain: 'text-brain-600',
+                wellness: 'text-wellness-600', 
+                calm: 'text-calm-600'
+              }
+              
               return (
                 <Card key={assessment.id} variant="interactive">
                   <CardHeader>
-                    <div className={`w-12 h-12 bg-${color}-100 rounded-lg flex items-center justify-center mb-4`}>
-                      <span className={`text-${color}-600 text-xl`}>{icon}</span>
+                    <div className={`w-12 h-12 ${bgClasses[color as keyof typeof bgClasses]} rounded-lg flex items-center justify-center mb-4`}>
+                      <span className={`${textClasses[color as keyof typeof textClasses]} text-xl`}>{icon}</span>
                     </div>
                     <CardTitle>{assessment.title}</CardTitle>
                     <CardDescription>{assessment.description}</CardDescription>
@@ -79,7 +92,7 @@ export default function AssessmentPage() {
                   <CardContent>
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-sm text-gray-500">~{assessment.estimatedTime} minutes</span>
-                      <span className={`text-sm font-medium text-${color}-600`}>
+                      <span className={`text-sm font-medium ${textClasses[color as keyof typeof textClasses]}`}>
                         {assessment.questions.length} questions
                       </span>
                     </div>

@@ -8,6 +8,24 @@ export default {
     './src/**/*.{ts,tsx}',
   ],
   prefix: "",
+  safelist: [
+    // Dynamic color classes for brain, wellness, calm variants
+    'bg-brain-50', 'bg-brain-100', 'bg-brain-200', 'bg-brain-500', 'bg-brain-600', 'bg-brain-700',
+    'bg-wellness-50', 'bg-wellness-100', 'bg-wellness-200', 'bg-wellness-500', 'bg-wellness-600', 'bg-wellness-700',
+    'bg-calm-50', 'bg-calm-100', 'bg-calm-200', 'bg-calm-500', 'bg-calm-600', 'bg-calm-700',
+    'text-brain-50', 'text-brain-100', 'text-brain-200', 'text-brain-500', 'text-brain-600', 'text-brain-700', 'text-brain-800', 'text-brain-900',
+    'text-wellness-50', 'text-wellness-100', 'text-wellness-200', 'text-wellness-500', 'text-wellness-600', 'text-wellness-700', 'text-wellness-800', 'text-wellness-900',
+    'text-calm-50', 'text-calm-100', 'text-calm-200', 'text-calm-500', 'text-calm-600', 'text-calm-700', 'text-calm-800', 'text-calm-900',
+    'border-brain-100', 'border-brain-200', 'border-brain-300', 'border-brain-500',
+    'border-wellness-100', 'border-wellness-200', 'border-wellness-300', 'border-wellness-500',
+    'border-calm-100', 'border-calm-200', 'border-calm-300', 'border-calm-500',
+    'hover:bg-brain-700', 'hover:bg-wellness-700', 'hover:bg-calm-700',
+    'from-brain-500', 'from-brain-600', 'from-brain-700',
+    'to-wellness-500', 'to-wellness-600', 'to-wellness-700',
+    'ring-brain-200', 'ring-brain-500', 'ring-wellness-200', 'ring-wellness-500', 'ring-calm-200', 'ring-calm-500',
+    // Difficulty badges
+    'bg-green-100', 'text-green-700', 'bg-yellow-100', 'text-yellow-700', 'bg-red-100', 'text-red-700'
+  ],
   theme: {
     container: {
       center: true,
