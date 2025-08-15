@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
                   <span className="text-white font-bold text-xs">LBW</span>
                 </div>
               </div>
-              <h3 className="text-lg font-bold bg-gradient-to-r from-brain-400 to-wellness-400 bg-clip-text text-transparent">
+              <h3 className="text-base font-bold bg-gradient-to-r from-brain-400 to-wellness-400 bg-clip-text text-transparent">
                 Limitless Brain Wellness
               </h3>
             </div>

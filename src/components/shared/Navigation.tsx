@@ -51,7 +51,7 @@ export default function Navigation() {
                 <span className="text-white font-bold text-xs">LBW</span>
               </div>
             </div>
-            <span className="font-bold text-gray-900 hidden sm:block">Limitless Brain Wellness</span>
+            <span className="font-semibold text-sm text-gray-900 hidden sm:block">Limitless Brain Wellness</span>
           </Link>
 
           {/* Desktop Navigation */}

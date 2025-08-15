@@ -61,12 +61,13 @@ const Header: React.FC = () => {
               </motion.div>
               <div>
                 <motion.h1 
-                  className="text-xl font-bold bg-gradient-to-r from-brain-600 to-wellness-600 bg-clip-text text-transparent"
+                  className="text-base md:text-lg font-bold bg-gradient-to-r from-brain-600 to-wellness-600 bg-clip-text text-transparent leading-tight"
                   whileHover={{ scale: 1.02 }}
                 >
-                  Limitless Brain Wellness
+                  <span className="hidden sm:inline">Limitless Brain Wellness</span>
+                  <span className="sm:hidden">LBW</span>
                 </motion.h1>
-                <p className="text-xs text-gray-500 hidden sm:block">Dr. Sweta Adatia</p>
+                <p className="text-xs text-gray-500 hidden md:block">Dr. Sweta Adatia</p>
               </div>
             </Link>
           </motion.div>
