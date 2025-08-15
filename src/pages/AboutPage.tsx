@@ -34,7 +34,7 @@ export default function AboutPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <h1 className="text-5xl font-bold bg-gradient-to-r from-brain-600 to-wellness-600 bg-clip-text text-transparent mb-6">
-            About Limitless Brain Wellness
+            About Limitless Brain Lab
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             {companyInfo.mission}

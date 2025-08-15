@@ -35,20 +35,38 @@ const Header: React.FC = () => {
           >
             <Link to="/" className="flex items-center space-x-3">
               <motion.div 
-                className="w-10 h-10 bg-gradient-to-br from-brain-500 to-wellness-500 rounded-xl flex items-center justify-center shadow-lg"
-                whileHover={{ rotate: 5 }}
+                className="w-10 h-10 rounded-full overflow-hidden shadow-lg"
+                whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <span className="text-white font-bold text-lg">🧠</span>
+                <img 
+                  src="/images/logo.png" 
+                  alt="Limitless Brain Lab" 
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to gradient background with initials if logo fails to load
+                    e.currentTarget.style.display = 'none';
+                    const fallback = e.currentTarget.parentElement?.querySelector('.logo-fallback') as HTMLElement;
+                    if (fallback) {
+                      fallback.style.display = 'flex';
+                    }
+                  }}
+                />
+                <div 
+                  className="logo-fallback w-full h-full bg-gradient-to-br from-brain-500 to-wellness-500 rounded-full flex items-center justify-center hidden"
+                  style={{ display: 'none' }}
+                >
+                  <span className="text-white font-bold text-sm">LBL</span>
+                </div>
               </motion.div>
               <div>
                 <motion.h1 
                   className="text-xl font-bold bg-gradient-to-r from-brain-600 to-wellness-600 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.02 }}
                 >
-                  Limitless Brain Wellness
+                  Limitless Brain Lab
                 </motion.h1>
-                <p className="text-xs text-gray-500 hidden sm:block">Science-backed brain optimization</p>
+                <p className="text-xs text-gray-500 hidden sm:block">Dr. Sweta Adatia</p>
               </div>
             </Link>
           </motion.div>
@@ -94,16 +112,26 @@ const Header: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <Link to="/profile">
-              <Button variant="outline" className="text-sm">
-                Profile
-              </Button>
-            </Link>
-            <Link to="/onboarding">
-              <Button className="bg-gradient-to-r from-brain-600 to-wellness-600 hover:from-brain-700 hover:to-wellness-700 text-sm">
-                Get Started
-              </Button>
-            </Link>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link to="/dashboard">
+                <Button variant="outline" className="text-sm">
+                  Dashboard
+                </Button>
+              </Link>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link to="/assessments">
+                <Button className="bg-gradient-to-r from-brain-600 to-wellness-600 hover:from-brain-700 hover:to-wellness-700 text-sm">
+                  Take Assessment
+                </Button>
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}

@@ -175,14 +175,66 @@ export default function LandingPage() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                Limitless Brain Wellness
+                Limitless Brain Lab
               </motion.h1>
               <motion.p 
                 variants={fadeInUp}
-                className="text-xl text-gray-600 max-w-2xl mx-auto"
+                className="text-xl text-gray-600 max-w-2xl mx-auto mb-8"
               >
                 Science-backed, personalized brain wellness programs designed to enhance focus, memory, mood, and stress management.
               </motion.p>
+              
+              {/* Hero CTA Buttons */}
+              <motion.div 
+                variants={fadeInUp}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link
+                    to="/assessments"
+                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-brain-600 to-wellness-600 text-white font-semibold rounded-lg hover:from-brain-700 hover:to-wellness-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    Take Free Assessment
+                    <motion.span 
+                      className="ml-2"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      →
+                    </motion.span>
+                  </Link>
+                </motion.div>
+                
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link
+                    to="/onboarding"
+                    className="inline-flex items-center px-8 py-4 bg-white text-brain-600 font-semibold rounded-lg border-2 border-brain-600 hover:bg-brain-50 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    Get Started
+                  </Link>
+                </motion.div>
+                
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center px-6 py-3 text-brain-600 font-medium hover:text-brain-700 transition-colors duration-200"
+                  >
+                    Learn More
+                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </motion.div>
+              </motion.div>
             </motion.div>
 
           {/* Key Features */}
@@ -236,7 +288,21 @@ export default function LandingPage() {
                   <span className={`${feature.textColor} text-xl`}>{feature.icon}</span>
                 </motion.div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-600 mb-4">{feature.description}</p>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link
+                    to={index === 0 ? "/assessments/adhd" : index === 1 ? "/assessments/memory" : "/assessments/stress"}
+                    className={`inline-flex items-center px-4 py-2 ${feature.textColor} font-medium text-sm rounded-lg border hover:bg-opacity-10 hover:${feature.bgColor} transition-all duration-200`}
+                  >
+                    Explore
+                    <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>

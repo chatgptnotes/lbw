@@ -148,9 +148,16 @@ export default function AssessmentPage() {
                   <div className="font-medium text-gray-900">ADHD Assessment</div>
                   <div className="text-sm text-gray-600">Completed 3 days ago • Score: 68/100</div>
                 </div>
-                <button className="text-brain-600 hover:text-brain-700 text-sm font-medium">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => {
+                    // TODO: Implement results viewing
+                    alert('Assessment results viewing coming soon!')
+                  }}
+                >
                   View Results
-                </button>
+                </Button>
               </div>
               
               <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
@@ -158,9 +165,16 @@ export default function AssessmentPage() {
                   <div className="font-medium text-gray-900">Stress Scale (PSS)</div>
                   <div className="text-sm text-gray-600">Completed 1 week ago • Score: 24/40</div>
                 </div>
-                <button className="text-brain-600 hover:text-brain-700 text-sm font-medium">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => {
+                    // TODO: Implement results viewing
+                    alert('Assessment results viewing coming soon!')
+                  }}
+                >
                   View Results
-                </button>
+                </Button>
               </div>
               
               <div className="text-center py-4">

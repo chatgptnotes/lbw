@@ -311,12 +311,24 @@ export default function ProgressTracking() {
                     )}
                   </div>
                   {cycle.status === 'active' && getDaysUntilReassessment() <= 2 && (
-                    <Button variant="brain" size="sm">
+                    <Button 
+                      variant="brain" 
+                      size="sm"
+                      onClick={() => {
+                        window.location.href = '/assessments'
+                      }}
+                    >
                       Take Reassessment
                     </Button>
                   )}
                   {cycle.status === 'upcoming' && (
-                    <Button variant="outline" size="sm">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => {
+                        alert('Cycle preparation: This would set up notifications, create study plan, and prepare assessment schedule.')
+                      }}
+                    >
                       Prepare Cycle
                     </Button>
                   )}

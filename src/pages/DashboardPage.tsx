@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useBrainWellness } from '../hooks/useBrainWellness'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
@@ -77,7 +78,10 @@ export default function DashboardPage() {
             <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
               <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
               <div className="space-y-3">
-                <button className="w-full p-3 text-left border border-gray-200 rounded-lg hover:border-brain-300 hover:bg-brain-50 transition-colors">
+                <Link 
+                  to="/progress"
+                  className="block w-full p-3 text-left border border-gray-200 rounded-lg hover:border-brain-300 hover:bg-brain-50 transition-colors"
+                >
                   <div className="flex items-center space-x-3">
                     <span className="text-xl">📝</span>
                     <div>
@@ -85,9 +89,12 @@ export default function DashboardPage() {
                       <div className="text-sm text-gray-600">Log your mood and progress</div>
                     </div>
                   </div>
-                </button>
+                </Link>
                 
-                <button className="w-full p-3 text-left border border-gray-200 rounded-lg hover:border-wellness-300 hover:bg-wellness-50 transition-colors">
+                <Link 
+                  to="/assessments"
+                  className="block w-full p-3 text-left border border-gray-200 rounded-lg hover:border-wellness-300 hover:bg-wellness-50 transition-colors"
+                >
                   <div className="flex items-center space-x-3">
                     <span className="text-xl">🧪</span>
                     <div>
@@ -95,9 +102,12 @@ export default function DashboardPage() {
                       <div className="text-sm text-gray-600">ADHD, stress, or memory test</div>
                     </div>
                   </div>
-                </button>
+                </Link>
                 
-                <button className="w-full p-3 text-left border border-gray-200 rounded-lg hover:border-calm-300 hover:bg-calm-50 transition-colors">
+                <Link 
+                  to="/content"
+                  className="block w-full p-3 text-left border border-gray-200 rounded-lg hover:border-calm-300 hover:bg-calm-50 transition-colors"
+                >
                   <div className="flex items-center space-x-3">
                     <span className="text-xl">🎯</span>
                     <div>
@@ -105,7 +115,7 @@ export default function DashboardPage() {
                       <div className="text-sm text-gray-600">Breathing, exercise, or cognitive training</div>
                     </div>
                   </div>
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -159,7 +169,13 @@ export default function DashboardPage() {
                       {dailyContent.video.difficulty}
                     </span>
                   </div>
-                  <Button size="sm" className="w-full">Watch Now</Button>
+                  <Button 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => window.open(dailyContent.video.url, '_blank')}
+                  >
+                    Watch Now
+                  </Button>
                 </CardContent>
               </Card>
             )}
@@ -207,7 +223,9 @@ export default function DashboardPage() {
                       {dailyContent.task.difficulty}
                     </span>
                   </div>
-                  <Button size="sm" variant="wellness" className="w-full">Start Task</Button>
+                  <Link to="/content">
+                    <Button size="sm" variant="wellness" className="w-full">Start Task</Button>
+                  </Link>
                 </CardContent>
               </Card>
             )}
@@ -257,7 +275,9 @@ export default function DashboardPage() {
                   <p className="text-gray-600 text-sm mb-4">{dailyContent.nutrition.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-gray-500 capitalize">{dailyContent.nutrition.type}</span>
-                    <Button size="sm" variant="wellness">View Recipe</Button>
+                    <Link to="/content">
+                      <Button size="sm" variant="wellness">View Recipe</Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>

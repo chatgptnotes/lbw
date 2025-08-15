@@ -9,11 +9,29 @@ const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-brain-500 to-wellness-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">🧠</span>
+              <div className="w-8 h-8 rounded-full overflow-hidden">
+                <img 
+                  src="/images/logo.png" 
+                  alt="Limitless Brain Lab" 
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to gradient background with initials if logo fails to load
+                    e.currentTarget.style.display = 'none';
+                    const fallback = e.currentTarget.parentElement?.querySelector('.logo-fallback') as HTMLElement;
+                    if (fallback) {
+                      fallback.style.display = 'flex';
+                    }
+                  }}
+                />
+                <div 
+                  className="logo-fallback w-full h-full bg-gradient-to-br from-brain-500 to-wellness-500 rounded-full flex items-center justify-center hidden"
+                  style={{ display: 'none' }}
+                >
+                  <span className="text-white font-bold text-xs">LBL</span>
+                </div>
               </div>
               <h3 className="text-lg font-bold bg-gradient-to-r from-brain-400 to-wellness-400 bg-clip-text text-transparent">
-                Limitless Brain Wellness
+                Limitless Brain Lab
               </h3>
             </div>
                             <p className="text-gray-300 text-sm leading-relaxed">
@@ -90,7 +108,7 @@ const Footer: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-gray-400">
-              © 2024 Limitless Brain Wellness. All rights reserved.
+              © 2024 Limitless Brain Lab. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-xs text-gray-500">
               <span className="flex items-center space-x-1">
