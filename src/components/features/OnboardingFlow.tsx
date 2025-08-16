@@ -154,7 +154,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     <div className="space-y-6">
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">Welcome to LBW</h2>
-        <p className="text-gray-600">Break free from stress, forgetfulness, and brain fog. Let's start with some basic information about you.</p>
+        <p className="text-gray-700 dark:text-gray-200 text-base font-medium leading-6">Break free from stress, forgetfulness, and brain fog. Let's start with some basic information about you.</p>
       </div>
       
       <div className="space-y-4">
@@ -243,7 +243,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       <div className="space-y-6">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">What would you like to improve?</h2>
-          <p className="text-gray-600">Select all areas that apply to you. We'll personalize your experience based on your goals.</p>
+          <p className="text-gray-700 dark:text-gray-200 text-base font-medium leading-6">Select all areas that apply to you. We'll personalize your experience based on your goals.</p>
         </div>
         
         <div className="grid grid-cols-1 gap-4">
@@ -261,8 +261,8 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
                 <span className="text-3xl">{focus.icon}</span>
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-1">{focus.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">{focus.description}</p>
-                  <span className="text-xs text-brain-600 font-medium">{focus.pathway}</span>
+                  <p className="text-base text-gray-700 dark:text-gray-200 mb-2 font-medium leading-6">{focus.description}</p>
+                  <span className="text-base text-brain-600 font-semibold">{focus.pathway}</span>
                 </div>
                 {data.improvementFocus.includes(focus.id) && (
                   <span className="text-brain-500 text-xl">✓</span>
@@ -275,7 +275,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
         {data.improvementFocus.length > 0 && (
           <div className="bg-brain-50 rounded-lg p-4">
             <h4 className="font-medium text-brain-900 mb-2">Your Selected Pathways:</h4>
-            <ul className="text-sm text-brain-700 space-y-1">
+            <ul className="text-base text-brain-700 space-y-1 font-medium">
               {data.improvementFocus.map((focus) => {
                 const option = focusOptions.find(opt => opt.id === focus)
                 return option ? <li key={focus}>• {option.pathway}</li> : null
@@ -299,7 +299,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       <div className="space-y-6">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">QEEG Brain Mapping</h2>
-          <p className="text-gray-600">
+          <p className="text-gray-700 dark:text-gray-200 text-base font-medium leading-6">
             Based on your focus areas, a QEEG brain scan will provide valuable insights for your personalized program.
           </p>
         </div>
@@ -315,7 +315,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-base font-semibold text-gray-800 dark:text-gray-100 mb-2 leading-6">
                   Have you completed a QEEG scan?
                 </label>
                 <div className="flex space-x-4 justify-center">
@@ -336,14 +336,14 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
 
               {data.hasCompletedQEEG && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-base font-semibold text-gray-800 dark:text-gray-100 mb-2 leading-6">
                     Upload your QEEG results (PDF or image)
                   </label>
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
                     onChange={(e) => updateData('qeegFile', e.target.files?.[0])}
-                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brain-50 file:text-brain-700 hover:file:bg-brain-100"
+                    className="block w-full text-base text-gray-700 dark:text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-base file:font-semibold file:bg-brain-50 file:text-brain-700 hover:file:bg-brain-100 font-medium"
                   />
                 </div>
               )}
@@ -351,7 +351,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
               {!data.hasCompletedQEEG && (
                 <div className="bg-white rounded-lg p-4 border border-brain-200">
                   <h4 className="font-medium text-gray-900 mb-2">Book Your QEEG Scan</h4>
-                  <p className="text-sm text-gray-600 mb-3">
+                  <p className="text-base text-gray-700 dark:text-gray-200 mb-3 font-medium leading-6">
                     We'll help you schedule a QEEG scan with one of our certified providers.
                   </p>
                   <Button variant="wellness" size="sm">
@@ -384,13 +384,13 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       <div className="space-y-6">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">Health & Lifestyle Assessment</h2>
-          <p className="text-gray-600">Help us understand your current state to provide better recommendations.</p>
+          <p className="text-gray-700 dark:text-gray-200 text-base font-medium leading-6">Help us understand your current state to provide better recommendations.</p>
         </div>
 
         <div className="space-y-6">
           {/* Current Symptoms */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-base font-semibold text-gray-800 dark:text-gray-100 mb-3 leading-6">
               What symptoms are you currently experiencing? (Select all that apply)
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -398,7 +398,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
                 <button
                   key={symptom}
                   onClick={() => toggleSymptom(symptom)}
-                  className={`p-2 text-sm rounded-lg border transition-colors ${
+                  className={`p-2 text-base rounded-lg border transition-colors font-medium ${
                     data.currentSymptoms.includes(symptom)
                       ? 'border-brain-500 bg-brain-50 text-brain-700'
                       : 'border-gray-200 hover:border-gray-300'
@@ -444,7 +444,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
               How would you rate your current stress level? (1-10)
             </label>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-500">Low (1)</span>
+              <span className="text-base text-gray-700 dark:text-gray-200 font-medium">Low (1)</span>
               <input
                 type="range"
                 min="1"
@@ -453,7 +453,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
                 onChange={(e) => updateData('stressLevel', parseInt(e.target.value))}
                 className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
-              <span className="text-sm text-gray-500">High (10)</span>
+              <span className="text-base text-gray-700 dark:text-gray-200 font-medium">High (10)</span>
             </div>
             <div className="text-center mt-1">
               <span className="text-lg font-semibold text-brain-600">{data.stressLevel}</span>
@@ -515,8 +515,8 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
               <span className="text-2xl">{option.icon}</span>
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 mb-1">{option.title}</h3>
-                <p className="text-sm text-gray-600 mb-1">{option.description}</p>
-                <span className="text-xs text-brain-600 font-medium">{option.focus}</span>
+                <p className="text-base text-gray-700 dark:text-gray-200 mb-1 font-medium leading-6">{option.description}</p>
+                <span className="text-base text-brain-600 font-semibold">{option.focus}</span>
               </div>
               {data.coachingPreference === option.id && (
                 <span className="text-brain-500 text-xl">✓</span>
@@ -594,8 +594,8 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">Step {currentStep} of {totalSteps}</span>
-            <span className="text-sm text-gray-500">{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
+            <span className="text-base font-semibold text-gray-800 dark:text-gray-100">Step {currentStep} of {totalSteps}</span>
+            <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
           </div>
           <Progress 
             value={(currentStep / totalSteps) * 100}

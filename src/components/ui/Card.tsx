@@ -87,7 +87,7 @@ CardHeader.displayName = 'CardHeader'
 
 export const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingElement>>(
   ({ className, ...props }, ref) => (
-    <h3 ref={ref} className={clsx('text-lg font-semibold text-gray-900', className)} {...props} />
+    <h3 ref={ref} className={clsx('text-lg font-semibold text-gray-800 dark:text-gray-100', className)} {...props} />
   )
 )
 
@@ -95,7 +95,7 @@ CardTitle.displayName = 'CardTitle'
 
 export const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
   ({ className, ...props }, ref) => (
-    <p ref={ref} className={clsx('text-gray-600', className)} {...props} />
+    <p ref={ref} className={clsx('text-gray-700 dark:text-gray-200 font-medium text-base leading-6', className)} {...props} />
   )
 )
 

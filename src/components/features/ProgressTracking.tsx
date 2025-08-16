@@ -124,10 +124,10 @@ export default function ProgressTracking() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-md text-base font-semibold transition-colors ${
                 activeTab === tab.id
                   ? 'bg-white text-brain-700 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+                  : 'text-gray-700 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-100 font-medium'
               }`}
             >
               {tab.label}
@@ -139,7 +139,7 @@ export default function ProgressTracking() {
           <select
             value={selectedTimeframe}
             onChange={(e) => setSelectedTimeframe(e.target.value as any)}
-            className="px-3 py-1 border border-gray-300 rounded-md text-sm"
+            className="px-3 py-1 border border-gray-300 rounded-md text-base font-medium"
           >
             <option value="7d">Last 7 days</option>
             <option value="30d">Last 30 days</option>
@@ -154,7 +154,7 @@ export default function ProgressTracking() {
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-semibold text-gray-900">Active 10-Day Cycle</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">
                 Day {activeCycle.dayNumber} of 10 • {getDaysUntilReassessment()} days until reassessment
               </p>
             </div>
@@ -182,7 +182,7 @@ export default function ProgressTracking() {
               <div className="text-2xl font-bold text-brain-600 mb-1">
                 {latestData.overallScore}
               </div>
-              <div className="text-sm text-gray-600">Overall Score</div>
+              <div className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">Overall Score</div>
               <div className="text-xs text-green-600 mt-1">
                 ↗️ +{getScoreChange(latestData.overallScore, mockProgressData[1].overallScore).value} points
               </div>
@@ -192,7 +192,7 @@ export default function ProgressTracking() {
               <div className="text-2xl font-bold text-wellness-600 mb-1">
                 {latestData.activitiesCompleted}
               </div>
-              <div className="text-sm text-gray-600">Today's Activities</div>
+              <div className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">Today's Activities</div>
               <div className="text-xs text-green-600 mt-1">
                 ✅ Target: 3-5 daily
               </div>
@@ -202,7 +202,7 @@ export default function ProgressTracking() {
               <div className="text-2xl font-bold text-calm-600 mb-1">
                 {mockReassessmentCycles.filter(c => c.status === 'completed').length}
               </div>
-              <div className="text-sm text-gray-600">Completed Cycles</div>
+              <div className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">Completed Cycles</div>
               <div className="text-xs text-blue-600 mt-1">
                 📈 {mockReassessmentCycles.filter(c => c.status === 'completed').length * 10} total days
               </div>
@@ -212,7 +212,7 @@ export default function ProgressTracking() {
               <div className="text-2xl font-bold text-purple-600 mb-1">
                 {getDaysUntilReassessment()}
               </div>
-              <div className="text-sm text-gray-600">Days to Assessment</div>
+              <div className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">Days to Assessment</div>
               <div className="text-xs text-purple-600 mt-1">
                 🎯 Stay consistent!
               </div>
@@ -266,7 +266,7 @@ export default function ProgressTracking() {
                       10-Day Cycle {cycle.id.split('-')[1]}
                       {cycle.status === 'active' && <span className="ml-2 text-brain-600">(Active)</span>}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">
                       {new Date(cycle.startDate).toLocaleDateString()} - {new Date(cycle.endDate).toLocaleDateString()}
                     </p>
                   </div>
@@ -303,7 +303,7 @@ export default function ProgressTracking() {
                 )}
 
                 <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
-                  <div className="text-sm text-gray-600">
+                  <div className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">
                     {cycle.initialAssessments.length > 0 ? (
                       <>Initial: {cycle.initialAssessments.join(', ')}</>
                     ) : (
@@ -354,7 +354,7 @@ export default function ProgressTracking() {
               <div className="space-y-3">
                 {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day, index) => (
                   <div key={day} className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">{day}</span>
+                    <span className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">{day}</span>
                     <div className="flex items-center space-x-2">
                       <div className="w-16 bg-gray-200 rounded-full h-2">
                         <div 

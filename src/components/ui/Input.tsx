@@ -14,7 +14,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, error, helperText, variant = 'default', animate = true, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false)
     
-    const baseClasses = 'block w-full px-4 py-3 text-sm border rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-white/80 backdrop-blur-sm'
+    const baseClasses = 'block w-full px-4 py-3 text-base border rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-white/80 backdrop-blur-sm'
     
     const variants = {
       default: 'border-gray-200 focus:border-brain-500 focus:ring-brain-500/20 hover:border-gray-300',
@@ -41,10 +41,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <motion.label 
             className={clsx(
-              "block text-sm font-medium mb-2 transition-colors duration-200",
+              "block text-base font-semibold mb-2 transition-colors duration-200 leading-6",
               error ? "text-red-700" : 
               isFocused ? (variant === 'wellness' ? "text-wellness-700" : "text-brain-700") : 
-              "text-gray-700"
+              "text-gray-800 dark:text-gray-100"
             )}
             animate={animate ? { 
               scale: isFocused ? 1.02 : 1,
@@ -65,7 +65,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={clsx(
               baseClasses,
               errorClasses,
-              'placeholder:text-gray-400',
+              'placeholder:text-gray-600',  // Improved contrast for placeholders
               className
             )}
             onFocus={(e) => {
@@ -96,7 +96,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <>
             {error && (
               <motion.p 
-                className="mt-2 text-sm text-red-600 flex items-center"
+                className="mt-2 text-base text-red-600 flex items-center font-medium"
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2 }}
@@ -107,7 +107,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
             {helperText && !error && (
               <motion.p 
-                className="mt-2 text-sm text-gray-500"
+                className="mt-2 text-base text-gray-700 dark:text-gray-200 font-medium leading-6"
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2, delay: 0.1 }}
@@ -119,10 +119,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ) : (
           <>
             {error && (
-              <p className="mt-2 text-sm text-red-600">{error}</p>
+              <p className="mt-2 text-base text-red-600 font-medium">{error}</p>
             )}
             {helperText && !error && (
-              <p className="mt-2 text-sm text-gray-500">{helperText}</p>
+              <p className="mt-2 text-base text-gray-700 dark:text-gray-200 font-medium leading-6">{helperText}</p>
             )}
           </>
         )}
@@ -143,7 +143,7 @@ interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, label, error, helperText, variant = 'default', options, ...props }, ref) => {
-    const baseClasses = 'block w-full px-4 py-2 text-sm border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
+    const baseClasses = 'block w-full px-4 py-2 text-base border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
     
     const variants = {
       default: 'border-gray-300 focus:border-brain-500 focus:ring-brain-500',
@@ -157,7 +157,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-base font-semibold text-gray-800 dark:text-gray-100 mb-1 leading-6">
             {label}
           </label>
         )}
@@ -177,10 +177,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ))}
         </select>
         {error && (
-          <p className="mt-1 text-sm text-red-600">{error}</p>
+          <p className="mt-1 text-base text-red-600 font-medium">{error}</p>
         )}
         {helperText && !error && (
-          <p className="mt-1 text-sm text-gray-500">{helperText}</p>
+          <p className="mt-1 text-base text-gray-700 dark:text-gray-200 font-medium leading-6">{helperText}</p>
         )}
       </div>
     )

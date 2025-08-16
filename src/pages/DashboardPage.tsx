@@ -49,7 +49,7 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-bold text-gray-900">
             Welcome back, {user?.name || 'User'}! 👋
           </h1>
-          <p className="text-gray-600 mt-2">Here's your brain wellness overview for today.</p>
+          <p className="text-gray-700 dark:text-gray-200 mt-2 text-base font-medium leading-6">Here's your brain wellness overview for today.</p>
         </motion.div>
 
         {/* Brain Fitness Score */}
@@ -86,7 +86,7 @@ export default function DashboardPage() {
                     <span className="text-xl">📝</span>
                     <div>
                       <div className="font-medium text-gray-900">Daily Check-in</div>
-                      <div className="text-sm text-gray-600">Log your mood and progress</div>
+                      <div className="text-base text-gray-700 dark:text-gray-200 font-medium">Log your mood and progress</div>
                     </div>
                   </div>
                 </Link>
@@ -99,7 +99,7 @@ export default function DashboardPage() {
                     <span className="text-xl">🧪</span>
                     <div>
                       <div className="font-medium text-gray-900">Take Assessment</div>
-                      <div className="text-sm text-gray-600">ADHD, stress, or memory test</div>
+                      <div className="text-base text-gray-700 dark:text-gray-200 font-medium">ADHD, stress, or memory test</div>
                     </div>
                   </div>
                 </Link>
@@ -112,7 +112,7 @@ export default function DashboardPage() {
                     <span className="text-xl">🎯</span>
                     <div>
                       <div className="font-medium text-gray-900">Start Activity</div>
-                      <div className="text-sm text-gray-600">Breathing, exercise, or cognitive training</div>
+                      <div className="text-base text-gray-700 dark:text-gray-200 font-medium">Breathing, exercise, or cognitive training</div>
                     </div>
                   </div>
                 </Link>
@@ -139,7 +139,7 @@ export default function DashboardPage() {
                   <blockquote className="text-gray-700 italic mb-2 text-lg">
                     "{dailyContent.quote.text}"
                   </blockquote>
-                  <cite className="text-sm text-gray-600">— {dailyContent.quote.author}</cite>
+                  <cite className="text-base text-gray-700 dark:text-gray-200 font-medium">— {dailyContent.quote.author}</cite>
                 </div>
               </CardContent>
             </Card>
@@ -153,14 +153,14 @@ export default function DashboardPage() {
                 <CardHeader>
                   <div className="flex items-center space-x-2 mb-2">
                     <span className="text-xl">🎥</span>
-                    <span className="text-sm font-medium text-brain-600">Featured Video</span>
+                    <span className="text-base font-semibold text-brain-600">Featured Video</span>
                   </div>
                   <CardTitle className="text-lg">{dailyContent.video.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 text-sm mb-4">{dailyContent.video.description}</p>
+                  <p className="text-gray-700 dark:text-gray-200 text-base mb-4 font-medium leading-6">{dailyContent.video.description}</p>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs text-gray-500">{Math.floor(dailyContent.video.duration / 60)} min</span>
+                    <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{Math.floor(dailyContent.video.duration / 60)} min</span>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       dailyContent.video.category === 'adhd' ? 'bg-brain-100 text-brain-700' :
                       dailyContent.video.category === 'memory' ? 'bg-wellness-100 text-wellness-700' :
@@ -193,8 +193,8 @@ export default function DashboardPage() {
                 <CardContent>
                   <p className="text-gray-600 text-sm mb-4">{dailyContent.article.excerpt}</p>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs text-gray-500">{dailyContent.article.readTime} min read</span>
-                    <span className="text-xs text-gray-500">By {dailyContent.article.author}</span>
+                    <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{dailyContent.article.readTime} min read</span>
+                    <span className="text-base text-gray-700 dark:text-gray-200 font-medium">By {dailyContent.article.author}</span>
                   </div>
                   <Button size="sm" variant="outline" className="w-full">Read Article</Button>
                 </CardContent>
@@ -214,7 +214,7 @@ export default function DashboardPage() {
                 <CardContent>
                   <p className="text-gray-600 text-sm mb-4">{dailyContent.task.description}</p>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs text-gray-500">{dailyContent.task.estimatedTime} min</span>
+                    <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{dailyContent.task.estimatedTime} min</span>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       dailyContent.task.difficulty === 'easy' ? 'bg-green-100 text-green-700' :
                       dailyContent.task.difficulty === 'medium' ? 'bg-yellow-100 text-yellow-700' :
@@ -254,7 +254,7 @@ export default function DashboardPage() {
                     <p className="text-sm font-medium text-calm-800">{dailyContent.breathwork.technique}</p>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">{dailyContent.breathwork.duration} min</span>
+                    <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{dailyContent.breathwork.duration} min</span>
                     <Button size="sm" variant="calm">Practice Now</Button>
                   </div>
                 </CardContent>
@@ -274,7 +274,7 @@ export default function DashboardPage() {
                 <CardContent>
                   <p className="text-gray-600 text-sm mb-4">{dailyContent.nutrition.description}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500 capitalize">{dailyContent.nutrition.type}</span>
+                    <span className="text-base text-gray-700 dark:text-gray-200 font-medium capitalize">{dailyContent.nutrition.type}</span>
                     <Link to="/content">
                       <Button size="sm" variant="wellness">View Recipe</Button>
                     </Link>

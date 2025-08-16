@@ -53,7 +53,7 @@ export default function CoachingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Brain Wellness Coaching</h1>
-            <p className="text-gray-600">
+            <p className="text-gray-700 dark:text-gray-200 text-base font-medium leading-6">
               Connect with certified brain wellness coaches for personalized guidance and support.
             </p>
           </div>
@@ -90,10 +90,10 @@ export default function CoachingPage() {
                 <span className="text-brain-600 text-2xl">🧠</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Brain Coaching</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-gray-700 dark:text-gray-200 text-base mb-4 font-medium leading-6">
                 Focus enhancement, executive function, and cognitive performance optimization.
               </p>
-              <div className="text-sm text-gray-500 mb-4">Starting at $80/session</div>
+              <div className="text-base text-gray-700 dark:text-gray-200 mb-4 font-medium">Starting at $80/session</div>
               <Button
                 onClick={() => setSelectedSpecialty('adhd')}
                 variant="brain"
@@ -108,7 +108,7 @@ export default function CoachingPage() {
                 <span className="text-calm-600 text-2xl">🌿</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Nervous System Coaching</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-gray-700 dark:text-gray-200 text-base mb-4 font-medium leading-6">
                 Stress regulation, trauma recovery, and nervous system optimization.
               </p>
               <div className="text-sm text-gray-500 mb-4">Starting at $90/session</div>
@@ -126,7 +126,7 @@ export default function CoachingPage() {
                 <span className="text-wellness-600 text-2xl">⚡</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">qEEG Consultation</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-gray-700 dark:text-gray-200 text-base mb-4 font-medium leading-6">
                 Brain mapping analysis and neurofeedback treatment planning.
               </p>
               <div className="text-sm text-gray-500 mb-4">Starting at $150/session</div>

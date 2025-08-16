@@ -51,7 +51,7 @@ export default function Navigation() {
                 <span className="text-white font-bold text-xs">LBW</span>
               </div>
             </div>
-            <span className="font-semibold text-sm text-gray-900 hidden sm:block">Limitless Brain Wellness</span>
+            <span className="font-semibold text-sm text-gray-800 dark:text-gray-100 hidden sm:block">Limitless Brain Wellness</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -63,7 +63,7 @@ export default function Navigation() {
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   isActive(item.path)
                     ? 'bg-brain-50 text-brain-700 border border-brain-200'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    : 'text-gray-700 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-100 hover:bg-gray-50 font-medium'
                 }`}
               >
                 <span className="mr-2">{item.icon}</span>
@@ -86,7 +86,7 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+            className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-100 hover:bg-gray-50 font-medium"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,7 +110,7 @@ export default function Navigation() {
                   className={`block px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive(item.path)
                       ? 'bg-brain-50 text-brain-700 border border-brain-200'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      : 'text-gray-700 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-100 hover:bg-gray-50 font-medium'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

@@ -59,7 +59,7 @@ export default function LandingPage() {
             </motion.h2>
             <motion.p 
               variants={fadeInUp}
-              className="text-gray-300 mb-8 max-w-2xl mx-auto"
+              className="text-gray-100 dark:text-gray-200 mb-8 max-w-2xl mx-auto font-medium text-lg leading-7"
             >
               Watch how our science-backed approach transforms brain wellness through personalized assessments, targeted training, and expert coaching.
             </motion.p>
@@ -127,7 +127,7 @@ export default function LandingPage() {
               <div className="bg-gray-800 rounded-lg p-6">
                 <div className="text-brain-400 text-2xl mb-3">🎯</div>
                 <h3 className="text-white font-semibold mb-2">Personalized Assessment</h3>
-                <p className="text-gray-300 text-sm">
+                <p className="text-gray-100 dark:text-gray-200 text-base font-medium leading-6">
                   Comprehensive evaluation of your cognitive strengths and areas for improvement.
                 </p>
               </div>
@@ -135,7 +135,7 @@ export default function LandingPage() {
               <div className="bg-gray-800 rounded-lg p-6">
                 <div className="text-wellness-400 text-2xl mb-3">🧠</div>
                 <h3 className="text-white font-semibold mb-2">Targeted Training</h3>
-                <p className="text-gray-300 text-sm">
+                <p className="text-gray-100 dark:text-gray-200 text-base font-medium leading-6">
                   Evidence-based exercises designed specifically for your brain wellness goals.
                 </p>
               </div>
@@ -143,7 +143,7 @@ export default function LandingPage() {
               <div className="bg-gray-800 rounded-lg p-6">
                 <div className="text-calm-400 text-2xl mb-3">👥</div>
                 <h3 className="text-white font-semibold mb-2">Expert Coaching</h3>
-                <p className="text-gray-300 text-sm">
+                <p className="text-gray-100 dark:text-gray-200 text-base font-medium leading-6">
                   Professional guidance from certified brain wellness and nervous system specialists.
                 </p>
               </div>
@@ -179,7 +179,7 @@ export default function LandingPage() {
               </motion.h1>
               <motion.p 
                 variants={fadeInUp}
-                className="text-xl text-gray-600 max-w-2xl mx-auto mb-8"
+                className="text-xl text-gray-700 dark:text-gray-200 max-w-2xl mx-auto mb-8 font-medium leading-7"
               >
                 Science-backed, personalized brain wellness programs designed to enhance focus, memory, mood, and stress management.
               </motion.p>
@@ -287,8 +287,8 @@ export default function LandingPage() {
                 >
                   <span className={`${feature.textColor} text-xl`}>{feature.icon}</span>
                 </motion.div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600 mb-4">{feature.description}</p>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">{feature.title}</h3>
+                <p className="text-gray-700 dark:text-gray-200 mb-4 font-medium text-base leading-6">{feature.description}</p>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -313,7 +313,7 @@ export default function LandingPage() {
             className="bg-white rounded-xl shadow-lg p-8 mb-12 hover:shadow-xl transition-shadow duration-300"
           >
             <motion.h2 
-              className="text-2xl font-semibold text-gray-900 mb-4"
+              className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -321,7 +321,7 @@ export default function LandingPage() {
               Track Your Brain Fitness
             </motion.h2>
             <motion.p 
-              className="text-gray-600 mb-6"
+              className="text-gray-700 dark:text-gray-200 mb-6 font-medium text-base leading-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -352,7 +352,7 @@ export default function LandingPage() {
                   >
                     {metric.score}
                   </motion.div>
-                  <div className="text-sm text-gray-500">{metric.label}</div>
+                  <div className="text-base text-gray-700 dark:text-gray-200 font-medium">{metric.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -382,7 +382,7 @@ export default function LandingPage() {
               </Link>
             </motion.div>
             <motion.p 
-              className="text-sm text-gray-500 mt-4"
+              className="text-base text-gray-700 dark:text-gray-200 mt-4 font-medium"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}

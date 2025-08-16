@@ -1,8 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './InteractiveBrainHero.scss';
 
-const InteractiveBrainHero: React.FC = () => {
+interface InteractiveBrainHeroProps {
+  targetLobe?: 'frontal' | 'parietal' | 'temporal' | 'occipital' | 'cerebellum' | 'brainstem';
+}
+
+const InteractiveBrainHero: React.FC<InteractiveBrainHeroProps> = ({ targetLobe }) => {
   const componentRef = useRef<HTMLDivElement>(null);
+  const [guidedMode, setGuidedMode] = useState<string | null>(targetLobe || null);
 
   useEffect(() => {
     // Import lodash dynamically for the brain interaction logic
@@ -125,6 +130,12 @@ const InteractiveBrainHero: React.FC = () => {
             });
           };
 
+          const clickHandler = () => {
+            if (guidedMode && guidedMode === k.replace('_lobe', '').replace('_', '')) {
+              setGuidedMode(null);
+            }
+          };
+
           const mouseLeaveHandler = () => {
             const filterItems = componentRef.current?.querySelectorAll(SELECTORS.filter_item);
             if (filterItems) {
@@ -138,23 +149,32 @@ const InteractiveBrainHero: React.FC = () => {
 
           brainPart.addEventListener('mouseenter', mouseEnterHandler);
           brainPart.addEventListener('mouseleave', mouseLeaveHandler);
+          brainPart.addEventListener('click', clickHandler);
+
+          // Add pulsing class for guided mode
+          if (guidedMode && guidedMode === k.replace('_lobe', '').replace('_', '')) {
+            brainPart.classList.add('guided-pulse');
+          } else {
+            brainPart.classList.remove('guided-pulse');
+          }
 
           // Cleanup function
           return () => {
             brainPart.removeEventListener('mouseenter', mouseEnterHandler);
             brainPart.removeEventListener('mouseleave', mouseLeaveHandler);
+            brainPart.removeEventListener('click', clickHandler);
           };
         }
       });
     });
-  }, []);
+  }, [guidedMode]);
 
   return (
     <div className="tdc-main" ref={componentRef}>
       <div className="tdc-main-left">
         <div className="tdc-main-left-wrapper">
           <div className="tdc-main-left-wrapper-info">
-            <div className="tdc-main-title">Explore Your Brain's Limitless Potential</div>
+
             <div className="tdc-info-title">Hover over a part of the brain!</div>
             <br />
             <div className="tdc-info-description"></div>
@@ -164,6 +184,32 @@ const InteractiveBrainHero: React.FC = () => {
       <div className="tdc-main-right">
         <div className="tdc-main-right-filter"></div>
         <div className="tdc-main-right-demo">
+          {/* Brain Area Title */}
+          <div className="brain-area-title">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
+              Explore Your Brain's Limitless Potential
+            </h2>
+          </div>
+          {/* Instructional Callout */}
+          <div className="brain-callout">
+            <div className="brain-callout-content">
+              <p className="brain-callout-text">
+                {guidedMode 
+                  ? `Start with the ${guidedMode} lobe — select to continue.`
+                  : "Hover or tap a lobe to explore."
+                }
+              </p>
+              {guidedMode && (
+                <button 
+                  className="brain-callout-skip"
+                  onClick={() => setGuidedMode(null)}
+                  aria-label="Skip guided mode"
+                >
+                  Skip
+                </button>
+              )}
+            </div>
+          </div>
           <div className="tdc-main-right-demo-brain">
             <div className="tdc-brain-part tdc-frontal-lobe">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.36 316.37">

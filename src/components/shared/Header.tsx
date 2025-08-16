@@ -67,7 +67,7 @@ const Header: React.FC = () => {
                   <span className="hidden sm:inline">Limitless Brain Wellness</span>
                   <span className="sm:hidden">LBW</span>
                 </motion.h1>
-                <p className="text-xs text-gray-500 hidden md:block">Dr. Sweta Adatia</p>
+                <p className="text-base text-gray-700 dark:text-gray-200 hidden md:block font-medium">Dr. Sweta Adatia</p>
               </div>
             </Link>
           </motion.div>
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 relative ${
                     isActive(item.path)
                       ? 'bg-brain-50 text-brain-700 border border-brain-200'
-                      : 'text-gray-600 hover:text-brain-600 hover:bg-gray-50'
+                      : 'text-gray-700 dark:text-gray-200 hover:text-brain-600 hover:bg-gray-50 font-medium'
                   }`}
                 >
                   <motion.span 
@@ -138,7 +138,7 @@ const Header: React.FC = () => {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-brain-600 hover:bg-gray-50"
+            className="lg:hidden p-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-brain-600 hover:bg-gray-50 font-medium"
             whileTap={{ scale: 0.95 }}
           >
             <motion.svg 
@@ -182,7 +182,7 @@ const Header: React.FC = () => {
                       className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                         isActive(item.path)
                           ? 'bg-brain-50 text-brain-700 border border-brain-200'
-                          : 'text-gray-600 hover:text-brain-600 hover:bg-gray-50'
+                          : 'text-gray-700 dark:text-gray-200 hover:text-brain-600 hover:bg-gray-50 font-medium'
                       }`}
                     >
                       <span className="text-lg">{item.icon}</span>
@@ -218,7 +218,7 @@ const Header: React.FC = () => {
       {/* Secondary Navigation Bar (Optional - for features/categories) */}
       <div className="hidden xl:block bg-gray-50 border-t border-gray-100">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center space-x-8 py-2 text-xs text-gray-600">
+          <div className="flex items-center justify-center space-x-8 py-2 text-base text-gray-700 dark:text-gray-200 font-medium">
             <span className="flex items-center space-x-1">
               <span>🎯</span>
               <span>ADHD Support</span>

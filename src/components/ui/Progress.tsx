@@ -31,8 +31,8 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       <div ref={ref} className={clsx('w-full', className)} {...props}>
         {showLabel && (
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">{label}</span>
-            <span className="text-sm text-gray-500">{Math.round(percentage)}%</span>
+            <span className="text-base font-semibold text-gray-800 dark:text-gray-100 leading-6">{label}</span>
+            <span className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">{Math.round(percentage)}%</span>
           </div>
         )}
         <div className={clsx('w-full bg-gray-200 rounded-full overflow-hidden', containerClasses[size])}>
@@ -109,8 +109,8 @@ export const CircularProgress = forwardRef<SVGSVGElement, CircularProgressProps>
         
         {showLabel && (
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-lg font-bold text-gray-900">{Math.round(percentage)}</span>
-            {label && <span className="text-xs text-gray-600">{label}</span>}
+            <span className="text-lg font-bold text-gray-800 dark:text-gray-100">{Math.round(percentage)}</span>
+            {label && <span className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">{label}</span>}
           </div>
         )}
       </div>

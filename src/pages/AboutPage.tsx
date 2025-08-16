@@ -36,7 +36,7 @@ export default function AboutPage() {
           <h1 className="text-5xl font-bold bg-gradient-to-r from-brain-600 to-wellness-600 bg-clip-text text-transparent mb-6">
             About Limitless Brain Wellness
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 dark:text-gray-200 max-w-3xl mx-auto font-medium leading-8">
             {companyInfo.mission}
           </p>
         </motion.div>
@@ -58,7 +58,7 @@ export default function AboutPage() {
                     <span className="text-2xl">🌍</span>
                     <div>
                       <div className="font-medium">Global Locations</div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-base text-gray-800 dark:text-gray-100 font-semibold">
                         {companyInfo.locations.join(' • ')}
                       </div>
                     </div>
@@ -67,7 +67,7 @@ export default function AboutPage() {
                     <span className="text-2xl">📅</span>
                     <div>
                       <div className="font-medium">Founded</div>
-                      <div className="text-sm text-gray-600">{companyInfo.founded}</div>
+                      <div className="text-base text-gray-800 dark:text-gray-100 font-semibold">{companyInfo.founded}</div>
                     </div>
                   </div>
                 </div>
@@ -150,22 +150,22 @@ export default function AboutPage() {
                     </motion.div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{founder.name}</h3>
                     <p className="text-brain-600 font-medium mb-2">{founder.title}</p>
-                    <p className="text-gray-600 text-sm mb-4">{founder.role}</p>
+                    <p className="text-gray-700 dark:text-gray-200 text-base mb-4 font-medium leading-6">{founder.role}</p>
                     <div className="flex flex-wrap justify-center gap-2 mb-4">
                       {founder.languages.slice(0, 4).map((lang) => (
-                        <span key={lang} className="px-2 py-1 bg-brain-100 text-brain-700 text-xs rounded-full">
+                        <span key={lang} className="px-2 py-1 bg-brain-100 text-brain-700 text-sm rounded-full font-medium">
                           {lang}
                         </span>
                       ))}
                       {founder.languages.length > 4 && (
-                        <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                        <span className="px-2 py-1 bg-gray-100 text-gray-800 dark:text-gray-100 text-sm rounded-full font-medium">
                           +{founder.languages.length - 4} more
                         </span>
                       )}
                     </div>
                     <div className="text-center">
                       <div className="text-lg font-bold text-brain-600">{founder.yearsExperience}+</div>
-                      <div className="text-sm text-gray-600">Years Experience</div>
+                      <div className="text-base text-gray-800 dark:text-gray-100 font-semibold">Years Experience</div>
                     </div>
                   </div>
 
@@ -173,7 +173,7 @@ export default function AboutPage() {
                   <div className="lg:col-span-2 space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-3">Biography</h4>
-                      <p className="text-gray-600 leading-relaxed">{founder.bio}</p>
+                      <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-base font-medium">{founder.bio}</p>
                     </div>
 
                     <div>
@@ -182,12 +182,12 @@ export default function AboutPage() {
                         {founder.education.slice(0, 6).map((edu, i) => (
                           <div key={i} className="flex items-start space-x-2">
                             <span className="text-brain-600 mt-1">•</span>
-                            <span className="text-sm text-gray-600">{edu}</span>
+                            <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{edu}</span>
                           </div>
                         ))}
                       </div>
                       {founder.education.length > 6 && (
-                        <p className="text-sm text-gray-500 mt-2">+ {founder.education.length - 6} additional qualifications</p>
+                        <p className="text-base text-gray-700 dark:text-gray-200 font-medium mt-2 leading-6">+ {founder.education.length - 6} additional qualifications</p>
                       )}
                     </div>
 
@@ -198,7 +198,7 @@ export default function AboutPage() {
                           {founder.achievements.slice(0, 5).map((achievement, i) => (
                             <div key={i} className="flex items-start space-x-2">
                               <span className="text-wellness-600 mt-1">✓</span>
-                              <span className="text-sm text-gray-600">{achievement}</span>
+                              <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{achievement}</span>
                             </div>
                           ))}
                         </div>
@@ -208,7 +208,7 @@ export default function AboutPage() {
                         <h4 className="text-lg font-semibold text-gray-900 mb-3">Specialties</h4>
                         <div className="flex flex-wrap gap-2">
                           {founder.specialties.slice(0, 8).map((specialty) => (
-                            <span key={specialty} className="px-3 py-1 bg-wellness-100 text-wellness-700 text-xs rounded-full">
+                            <span key={specialty} className="px-3 py-1 bg-wellness-100 text-wellness-700 text-sm rounded-full font-medium">
                               {specialty}
                             </span>
                           ))}
@@ -245,9 +245,9 @@ export default function AboutPage() {
                     <CardTitle className="text-lg">{highlight.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 mb-4">{highlight.description}</p>
+                    <p className="text-gray-700 dark:text-gray-200 mb-4 text-base font-medium leading-6">{highlight.description}</p>
                     <div className="bg-gradient-to-r from-brain-50 to-wellness-50 p-3 rounded-lg">
-                      <p className="text-sm font-medium text-gray-800">{highlight.impact}</p>
+                      <p className="text-base font-semibold text-gray-800 dark:text-gray-100 leading-6">{highlight.impact}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -278,7 +278,7 @@ export default function AboutPage() {
                     {companyInfo.services.map((service, index) => (
                       <div key={index} className="flex items-start space-x-2">
                         <span className="text-brain-600 mt-1">•</span>
-                        <span className="text-sm text-gray-700">{service}</span>
+                        <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{service}</span>
                       </div>
                     ))}
                   </div>
@@ -299,7 +299,7 @@ export default function AboutPage() {
                     {companyInfo.methodology.map((method, index) => (
                       <div key={index} className="flex items-start space-x-2">
                         <span className="text-wellness-600 mt-1">•</span>
-                        <span className="text-sm text-gray-700">{method}</span>
+                        <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{method}</span>
                       </div>
                     ))}
                   </div>
@@ -332,8 +332,8 @@ export default function AboutPage() {
                     <span className="text-white text-2xl">🤝</span>
                   </div>
                   <h3 className="font-semibold text-gray-900 mb-2">{collab.organization}</h3>
-                  <p className="text-sm text-brain-600 mb-2">{collab.type}</p>
-                  <p className="text-xs text-gray-600">{collab.focus}</p>
+                  <p className="text-base text-brain-600 mb-2 font-medium">{collab.type}</p>
+                  <p className="text-base text-gray-700 dark:text-gray-200 font-medium leading-6">{collab.focus}</p>
                 </Card>
               </motion.div>
             ))}
