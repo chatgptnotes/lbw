@@ -8,6 +8,7 @@ interface InteractiveBrainHeroProps {
 const InteractiveBrainHero: React.FC<InteractiveBrainHeroProps> = ({ targetLobe }) => {
   const componentRef = useRef<HTMLDivElement>(null);
   const [guidedMode, setGuidedMode] = useState<string | null>(targetLobe || null);
+  const [showCallout, setShowCallout] = useState<boolean>(true);
 
   useEffect(() => {
     // Import lodash dynamically for the brain interaction logic
@@ -131,6 +132,9 @@ const InteractiveBrainHero: React.FC<InteractiveBrainHeroProps> = ({ targetLobe 
           };
 
           const clickHandler = () => {
+            // Hide callout on first interaction
+            setShowCallout(false);
+            
             if (guidedMode && guidedMode === k.replace('_lobe', '').replace('_', '')) {
               setGuidedMode(null);
             }
@@ -167,7 +171,7 @@ const InteractiveBrainHero: React.FC<InteractiveBrainHeroProps> = ({ targetLobe 
         }
       });
     });
-  }, [guidedMode]);
+  }, [guidedMode, showCallout]);
 
   return (
     <div className="tdc-main" ref={componentRef}>
@@ -191,25 +195,27 @@ const InteractiveBrainHero: React.FC<InteractiveBrainHeroProps> = ({ targetLobe 
             </h2>
           </div>
           {/* Instructional Callout */}
-          <div className="brain-callout">
-            <div className="brain-callout-content">
-              <p className="brain-callout-text">
-                {guidedMode 
-                  ? `Start with the ${guidedMode} lobe — select to continue.`
-                  : "Hover or tap a lobe to explore."
-                }
-              </p>
-              {guidedMode && (
-                <button 
-                  className="brain-callout-skip"
-                  onClick={() => setGuidedMode(null)}
-                  aria-label="Skip guided mode"
-                >
-                  Skip
-                </button>
-              )}
+          {showCallout && (
+            <div className="brain-callout">
+              <div className="brain-callout-content">
+                <p className="brain-callout-text">
+                  {guidedMode 
+                    ? `Start with the ${guidedMode} lobe — select to continue.`
+                    : "Hover or tap a lobe to explore."
+                  }
+                </p>
+                {guidedMode && (
+                  <button 
+                    className="brain-callout-skip"
+                    onClick={() => setGuidedMode(null)}
+                    aria-label="Skip guided mode"
+                  >
+                    Skip
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
+          )}
           <div className="tdc-main-right-demo-brain">
             <div className="tdc-brain-part tdc-frontal-lobe">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.36 316.37">

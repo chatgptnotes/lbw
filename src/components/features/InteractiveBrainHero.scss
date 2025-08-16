@@ -514,6 +514,7 @@ $temporal-lobe-bg-color: #7e7acf;
     right: 20px;
     z-index: 30;
     animation: gentle-bob 3s ease-in-out infinite;
+    transition: opacity 0.3s ease-out;
 
     @media (max-width: 768px) {
         top: 120px;
